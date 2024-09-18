@@ -1,7 +1,15 @@
+import 'remixicon/fonts/remixicon.css'
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Admin from './components/Admin'
+
 const App = ()=>{
   return(
     <div>
-      <h1 className="text-orange-600">Hi</h1>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Admin />}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   )
 }
