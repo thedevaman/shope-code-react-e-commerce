@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const Admin =()=>{
+const Layout =({children})=>{
     const [size,setSize] = useState(280)
     const [accountmenu,setAccountmenu] = useState(false) 
 return (
@@ -27,7 +27,7 @@ return (
         </div>
         <div>
             <button className="relative">
-                <img src="./images/avt.webp" className="w-10 h-10 rounded-full"
+                <img src="/images/avt.webp" className="w-10 h-10 rounded-full border"
                  onClick={()=>setAccountmenu(!accountmenu)}
                 />
                 {
@@ -46,8 +46,11 @@ return (
             </button>
         </div>
         </nav>
+        <div>
+            {children}
+        </div>
         </section>
     </div>
 )
 }
-export default Admin
+export default Layout
