@@ -14,6 +14,11 @@ const Layout =({children})=>{
             link:'/admin/dashboard'
         },
         {
+            label:'Customers',
+            icon:<i className="ri-user-line mr-2"></i>,
+            link:'/admin/coustmers'
+        },
+        {
             label:'Products',
             icon:<i className="ri-shopping-cart-fill mr-2"></i>,
             link:'/admin/products'
@@ -33,11 +38,11 @@ const Layout =({children})=>{
         icon:<i className="ri-tools-line mr-2"></i>,
         link:'/admin/settings'
         },
-        {
-        label:'Logout',
-        icon:<i className="ri-logout-box-r-line mr-2"></i>,
-        link:'/admin/logout'
-        },
+        // {
+        // label:'Logout',
+        // icon:<i className="ri-logout-box-r-line mr-2"></i>,
+        // link:'/admin/logout'
+        // },
         
     ]
 
@@ -61,9 +66,12 @@ return (
                 >{menulist.icon}{menulist.label}</Link>
             ))
         }
+         <button className="border-2 rounded px-4 py-2 font-semibold text-left text-gray-700 text-[17.5px] hover:bg-indigo-50 hover:rounded hover:shadow hover:duration-500 hover:border-indigo-50">
+       <i className="ri-logout-box-r-line mr-2"></i> Logout
+        </button>
         </div>
         </aside>
-        <section className="bg-indigo-50 h-screen"
+        <section className="bg-indigo-50 h-min"
         style={
             {
                 marginLeft:size,
@@ -97,6 +105,7 @@ return (
                       </div>                
                 </div>
                  }
+                 
             </button>
         </div>
         </nav>
@@ -129,6 +138,10 @@ return (
                 >{menulist.icon}{menulist.label}</Link>
             ))
         }
+         <button className="border-2 rounded px-4 py-2 font-semibold text-left text-gray-700 text-[17.5px] hover:bg-indigo-50 hover:rounded hover:shadow hover:duration-500 hover:border-indigo-50">
+       <i className="ri-logout-box-r-line mr-2"></i> Logout
+        </button>
+       
         </div>
         </aside>
         <section className="bg-indigo-50 h-screen"
