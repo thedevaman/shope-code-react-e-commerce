@@ -9,12 +9,14 @@ import Setting from './components/Admin/Setting'
 import Coustmer from './components/Admin/Coustmer'
 import Payment from './components/Admin/Payment'
 import Admin from './components/Admin'
+import Home from './components/Home'
 
 const App = ()=>{
   return(
     <div>
       <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Home/>}></Route>
         <Route path="/admin">
           <Route path="products" element={<Product/>} />
           <Route path="orders" element={<Order/>} />
