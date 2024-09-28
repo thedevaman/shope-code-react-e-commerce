@@ -22,7 +22,7 @@ const Layout=({children})=>{
 return(
     
     <div>
-       <nav className="shadow-lg bg-slate-50 sticky top-0 left-0">
+       <nav className="shadow-lg bg-slate-50 sticky top-0 left-0 z-10">
         <div className="w-10/12 mx-auto flex items-center justify-between">
         <img src='images/logo.jpg'
         className="w-24"
@@ -62,8 +62,8 @@ return(
         {children}
        </div>
 
-       <footer className="bg-orange-600 p-12">
-       <div className="w-10/12 mx-auto grid grid-cols-4">
+       <footer className="bg-orange-600 md:p-12 p-8">
+       <div className="md:w-10/12 mx-auto grid md:grid-cols-4 md:gap-0 gap-8">
        <div>
         <h1 className="text-white font-semibold text-2xl mb-3">Follow Us</h1>
        <ul className="space-y-2 text-slate-50">

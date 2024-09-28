@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Navigation } from 'swiper/modules';
 import { useState } from 'react';
-const Home =()=>{
+const Products =()=>{
     const [products,setProducts] = useState([
         {
             title:'blue shirt',
@@ -85,24 +85,10 @@ const Home =()=>{
     return(
         <Layout>
         <div>
-            <header>
-            <Swiper
-             navigation={true} 
-             pagination={{
-                dynamicBullets: true,
-              }}
-             modules={[Navigation,Pagination]}
-             slidesPerView={1} >
-      <SwiperSlide><img src="/images/a.jpg" alt="" /></SwiperSlide>
-      <SwiperSlide><img src="/images/b.jpg" alt="" /></SwiperSlide>
-      <SwiperSlide><img src="/images/c.jpg" alt="" /></SwiperSlide>
-      <SwiperSlide><img src="/images/d.png" alt="" /></SwiperSlide>
-    
-    </Swiper>
-            </header>
+          
            
            <div className='md:p-16 p-8'>
-               <h1 className='text-3xl font-bold text-center'>Latest Product</h1>
+               <h1 className='text-3xl font-bold text-center'>All Product</h1>
                <p className='mx-auto text-gray-600 md:w-7/12 text-center mt-2 mb-16 text-center'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. </p>
                <div className='md:w-10/12 mx-auto grid md:grid-cols-3 gap-12'>
                {
@@ -128,4 +114,4 @@ const Home =()=>{
         </Layout>
     )
 }
-export default Home
+export default Products

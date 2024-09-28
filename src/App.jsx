@@ -10,6 +10,8 @@ import Coustmer from './components/Admin/Coustmer'
 import Payment from './components/Admin/Payment'
 import Admin from './components/Admin'
 import Home from './components/Home'
+import Products from './components/Products'
+import Category from './components/Category'
 
 const App = ()=>{
   return(
@@ -17,6 +19,8 @@ const App = ()=>{
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/products' element={<Products/>}></Route>
+        <Route path='/category' element={<Category/>}></Route>
         <Route path="/admin">
           <Route path="products" element={<Product/>} />
           <Route path="orders" element={<Order/>} />
