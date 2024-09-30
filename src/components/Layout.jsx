@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 const Layout=({children})=>{
+   const [open,setOpen] = useState(false)
+   const navigate = useNavigate()
+
     const menus =[
         {
             label:"Home",
@@ -19,6 +23,13 @@ const Layout=({children})=>{
             href:'/contact-us',
         }
     ]
+
+    const mobileLink = (href)=>{
+        
+        navigate(href)
+        setOpen(false)
+    }
+
 return(
     
     <div>
@@ -27,7 +38,10 @@ return(
         <img src='images/logo.jpg'
         className="w-24"
         />
-        <ul className="flex gap-4 items-center">
+        <button className="md:hidden" onClick ={()=>setOpen(!open)}>
+        <i className="ri-menu-3-fill text-3xl"></i>
+        </button>
+        <ul className="md:flex gap-4 items-center hidden">
             {
             menus.map((list,index)=>(
                 <li key={index}>
@@ -63,7 +77,7 @@ return(
        </div>
 
        <footer className="bg-orange-600 md:p-12 p-8">
-       <div className="md:w-10/12 mx-auto grid md:grid-cols-4 md:gap-0 gap-8">
+       <div className="md:w-10/12 mx-auto grid md:grid-cols-4 md:gap-0 gap-8 ">
        <div>
         <h1 className="text-white font-semibold text-2xl mb-3">Follow Us</h1>
        <ul className="space-y-2 text-slate-50">
@@ -143,6 +157,24 @@ return(
        </div>
 
        </footer>
+
+      
+       <aside className="md:hidden bg-slate-900 shadow-lg fixed top-0 left-0 h-full z-20 overflow-hidden"
+       style={{
+        width:(open ? 250:0),
+        transition:'0.3s'
+       }}
+       >
+       <div className="flex flex-col p-8 gap-6">
+       {
+            menus.map((list,index)=>(
+              <button onClick={()=>mobileLink(list.href)} key={index} className="text-white">
+                {list.label}
+              </button>
+            )) 
+        }       
+       </div>
+       </aside>
     </div>
    
 )
