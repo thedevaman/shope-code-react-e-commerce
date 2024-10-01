@@ -2,7 +2,7 @@ import 'remixicon/fonts/remixicon.css'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 import NotFound from './components/NotFound'
-import Product from './components/Admin/Products'
+import AdminProduct from './components/Admin/Products'
 import Order from './components/Admin/Order'
 import Dashboard from './components/Admin/Dashboard'
 import Setting from './components/Admin/Setting'
@@ -12,6 +12,8 @@ import Admin from './components/Admin'
 import Home from './components/Home'
 import Products from './components/Products'
 import Category from './components/Category'
+import Login from './components/Login'
+import Signup from './components/Signup'
 
 const App = ()=>{
   return(
@@ -21,8 +23,10 @@ const App = ()=>{
         <Route path='/' element={<Home/>}></Route>
         <Route path='/products' element={<Products/>}></Route>
         <Route path='/category' element={<Category/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/signup' element={<Signup/>}></Route>
         <Route path="/admin">
-          <Route path="products" element={<Product/>} />
+          <Route path="products" element={<AdminProduct/>} />
           <Route path="orders" element={<Order/>} />
           <Route path="dashboard" element={<Dashboard/>} />
           <Route path="settings" element={<Setting/>} />
