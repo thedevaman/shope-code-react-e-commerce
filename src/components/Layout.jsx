@@ -172,7 +172,15 @@ return(
                 {list.label}
               </button>
             )) 
-        }       
+        }    
+          <button onClick={()=>mobileLink('/login')} className="text-white">
+            Login
+            </button>
+            <button onClick={()=>mobileLink('/signup')}
+            className="bg-blue-600 py-3 px-6 text-md font-semibold rounded text-white  hover:bg-rose-600 w-[100px] hover:text-white" 
+            >
+                Signup
+           </button>
        </div>
        </aside>
     </div>

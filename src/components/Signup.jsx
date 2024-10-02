@@ -1,8 +1,12 @@
+import { useState } from "react"
+import { Link } from "react-router-dom"
+
 const Signup =()=>{
+    const [passwordType,setPasswordType] = useState("password")
     return(
-        <div className="grid grid-cols-2 h-screen overflow-hidden">
+        <div className="grid md:grid-cols-2 md:h-screen md:overflow-hidden animate__animated animate__fadeIn">
           
-            <img src="/images/signup.jpg" className="w-full h-full" alt="" />
+            <img src="/images/signup.jpg" className="w-full md:h-full h-24 object-cover" alt="" />
           
            <div className="flex flex-col justify-center p-8">
             <h1 className="text-4xl font-bold">New User</h1>
@@ -30,17 +34,24 @@ const Signup =()=>{
                 <div className="flex flex-col relative">
                     <label className="font-semibold text-lg mb-1">Password</label>
                     <input
-                    type="passwrod"
+                    type={passwordType}
                     name="email"
                     placeholder="***********"
                     className="p-3 border border-gray-300 rounded"
                     required
                     />
-                     <button type="button" className="absolute top-11 right-4 w-8 h-8 rounded-full hover:bg-blue-200 hover:text-blue-600"><i class="ri-eye-line"></i></button>
+                     <button onClick={()=>setPasswordType(passwordType==='password'?'text':'password')} type="button" className="absolute top-11 right-4 w-8 h-8 rounded-full hover:bg-blue-200 hover:text-blue-600">
+                        {passwordType==='password'?<i className="ri-eye-line"></i>: <i className="ri-eye-off-line"></i>}
+                       
+                        
+                        </button>
                 </div>
                 <button className="p-3 bg-blue-600 text-white rounded font-semibold hover:bg-rose-600">Signup</button>
                
             </form>
+            <div>
+                Already have an account ? <Link to='/login' className="text-blue-600 text-semibold">Signin</Link>
+            </div>
            </div>
         </div>
     )
