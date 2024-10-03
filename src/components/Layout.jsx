@@ -1,9 +1,25 @@
-import { useState } from "react"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { useState,useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import firebaseAppConfig from "../util/firebase-config"
+
+const auth = getAuth(firebaseAppConfig)
 
 const Layout=({children})=>{
    const [open,setOpen] = useState(false)
+   const [session, setSession] = useState(null)
+
    const navigate = useNavigate()
+
+   useEffect(()=>{
+    onAuthStateChanged(auth,(user)=>{
+        if(user){
+            setSession(user)
+        }else{
+            setSession(null)
+        }
+    })
+   },[])
 
     const menus =[
         {
@@ -54,18 +70,27 @@ return(
 
             ))
             }
-            <Link 
-            className="block py-6 text-center hover:bg-blue-600 w-[100px] hover:text-white"
-            to='/login'
-            >
-                Login
-            </Link>
-            <Link 
-            className=" bg-blue-600 py-3 px-6 text-md font-semibold rounded text-white block text-center hover:bg-rose-600 w-[100px] hover:text-white" 
-            to='/signup'
-            >
-                Signup
-            </Link>
+            {
+                !session && 
+                <>
+                <Link 
+                className="block py-6 text-center hover:bg-blue-600 w-[100px] hover:text-white"
+                to='/login'
+                >
+                    Login
+                </Link>
+                <Link 
+                className=" bg-blue-600 py-3 px-6 text-md font-semibold rounded text-white block text-center hover:bg-rose-600 w-[100px] hover:text-white" 
+                to='/signup'
+                >
+                    Signup
+                </Link>
+                </>
+            }
+            {
+                session && <p>Hi User</p>
+            }
+          
             
         </ul>
             
@@ -173,6 +198,13 @@ return(
               </button>
             )) 
         }    
+
+        {
+            session && <p className="text-white">Hi User</p>
+        }
+        {
+            !session && 
+            <>
           <button onClick={()=>mobileLink('/login')} className="text-white">
             Login
             </button>
@@ -181,6 +213,9 @@ return(
             >
                 Signup
            </button>
+           </>
+        }
+         
        </div>
        </aside>
     </div>

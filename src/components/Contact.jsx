@@ -40,7 +40,7 @@ return(
                 </div>
                 <div className="flex flex-col relative">
                     <label className="font-semibold text-lg mb-1">Messages</label>
-                    <textarea name="messages" id="" rows="3"  className="p-3 border border-gray-300 rounded">
+                    <textarea name="messages" id="" rows={4}  className="p-3 border border-gray-300 rounded">
 
                     </textarea>
                    
