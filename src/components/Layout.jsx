@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import { useState,useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import firebaseAppConfig from "../util/firebase-config"
@@ -8,6 +8,7 @@ const auth = getAuth(firebaseAppConfig)
 const Layout=({children})=>{
    const [open,setOpen] = useState(false)
    const [session, setSession] = useState(null)
+   const [accountmenu, setAccountmenu] = useState(false)
 
    const navigate = useNavigate()
 
@@ -16,7 +17,7 @@ const Layout=({children})=>{
         if(user){
             setSession(user)
         }else{
-            setSession(null)
+            setSession(false)
         }
     })
    },[])
@@ -45,6 +46,11 @@ const Layout=({children})=>{
         navigate(href)
         setOpen(false)
     }
+
+    if(session===null)
+        return(
+    <div>Loading...</div>
+        )
 
 return(
     
@@ -88,7 +94,23 @@ return(
                 </>
             }
             {
-                session && <p>Hi User</p>
+                session && 
+                <button className="relative" onClick={()=>setAccountmenu(!accountmenu)}>
+                    <img src="/images/avt.webp" className="w-10 h-10 rounded-full" alt="" />
+                    {
+                    accountmenu &&
+                    <div className="flex flex-col gap-2 items-start w-[150px] py-3 bg-white absolute top-12 right-0 shadow-lg shadow-gray-300">
+                     <Link to="/profile" className="w-full text-left p-2 hover:bg-gray-100"><i className="ri-user-line mr-2"></i>My Profile</Link>
+                     <Link to="/cart" className="w-full text-left p-2 hover:bg-gray-100"><i className="ri-shopping-cart-line mr-2"></i>Cart</Link>
+                   <button className="w-full text-left p-2 hover:bg-gray-100" onClick={()=>signOut(auth)}>
+                   <i className="ri-logout-circle-r-line mr-2"></i>
+                   Logout
+                   </button>
+                    
+                    </div>
+                    }
+                    
+                </button>
             }
           
             
