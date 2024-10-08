@@ -13,9 +13,11 @@ import Admin from './components/Admin'
 import Home from './components/Home'
 import Products from './components/Products'
 import Category from './components/Category'
+import Cart from './components/Cart'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Contact from './components/Contact';
+import PreGuard from './components/Gaurd/PreGaurd';
 
 const App = ()=>{
   return(
@@ -25,8 +27,11 @@ const App = ()=>{
         <Route path='/' element={<Home/>}></Route>
         <Route path='/products' element={<Products/>}></Route>
         <Route path='/category' element={<Category/>}></Route>
+        <Route path='/cart' element={<Cart/>}></Route>
+        <Route element={<PreGuard/>}>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/signup' element={<Signup/>}></Route>
+        </Route>
         <Route path='/contact-us' element={<Contact/>}></Route>
         <Route path="/admin">
           <Route path="products" element={<AdminProduct/>} />
