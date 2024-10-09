@@ -35,7 +35,7 @@ const Cart = ()=>{
     ])
 return(
     <Layout>
-        <div className="my-16 mx-auto w-7/12 bg-white shadow-lg border rounded-md p-8">
+        <div className="md:my-16 mx-auto md:w-7/12 bg-white shadow-lg border rounded-md p-8">
             <div className="flex items-center gap-4">
             <i className="ri-shopping-cart-line text-4xl"></i>
             <h1 className="text-3xl font-bold"> Cart</h1>
