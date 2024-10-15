@@ -20,8 +20,9 @@ const Layout=({children})=>{
             setSession(false)
         }
     })
+   
    },[])
-
+ 
     const menus =[
         {
             label:"Home",
@@ -100,6 +101,7 @@ return(
                     {
                     accountmenu &&
                     <div className="flex flex-col gap-2 items-start w-[150px] py-3 bg-white absolute top-12 right-0 shadow-lg shadow-gray-300">
+                     
                      <Link to="/profile" className="w-full text-left p-2 hover:bg-gray-100"><i className="ri-user-line mr-2"></i>My Profile</Link>
                      <Link to="/cart" className="w-full text-left p-2 hover:bg-gray-100"><i className="ri-shopping-cart-line mr-2"></i>Cart</Link>
                    <button className="w-full text-left p-2 hover:bg-gray-100" onClick={()=>signOut(auth)}>
