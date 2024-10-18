@@ -5,7 +5,8 @@ import { onAuthStateChanged,getAuth, updateProfile, } from "firebase/auth"
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
-
+import { getFirestore, collection, addDoc } from "firebase/firestore"
+const db = getFirestore(firebaseAppConfig)
 const auth = getAuth(firebaseAppConfig)
 const storage = getStorage()
 
@@ -19,6 +20,14 @@ const Profile = ()=>{
         email:'',
         mobile:''
     })
+    const [addressFormValue, setAddressFormValue] = useState({
+      address:'',
+      city:'',
+      state:'',
+      country:'',
+      pincode:''
+    }) 
+
    useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{
         if(user)
@@ -74,23 +83,58 @@ const Profile = ()=>{
   })
   
   }
+
+
+  const saveprofileinfo = async (e)=>{
+    e.preventDefault()
+    await updateProfile(auth.currentUser,{
+      displayName:formvalue.fullname,
+      phoneNumber:formvalue.mobile
+    })
+  
+    new Swal({
+      icon:'success',
+      title:'Profile Updated'
+    })
+  }
+  
+  
+  const saveAddress = async (e)=>{
+    try{
+    e.preventDefault()
+   const datastore = await addDoc(collection(db,"addresses"),{
+    addressFormValue
+   })
+   console.log(datastore)
+  }
+  catch(err)
+  {
+    console.log(err)
+  }
+  
+  }
+  
+  const handleAddressForm = (e)=>{
+   const input =  e.target
+   const name = input.name
+   const value = input.value
+  
+   setAddressFormValue({
+    ...addressFormValue,
+    [name]:value
+   })
+  }
+
+
+
+
+
    if(session===null)
     return(
 <div>Loading...</div>
     )
 
-const saveprofileinfo = async (e)=>{
-  e.preventDefault()
-  await updateProfile(auth.currentUser,{
-    displayName:formvalue.fullname,
-    phoneNumber:formvalue.mobile
-  })
 
-  new Swal({
-    icon:'success',
-    title:'Profile Updated'
-  })
-}
 
 
 return(
@@ -147,6 +191,81 @@ return(
             />
             </div>
             <div />
+
+
+         
+            <button className="px-4 py-2 bg-rose-600 text-white rounded w-fit hover:bg-green-600">
+                <i className="ri-save-line mr-2"></i>
+                Save
+            </button>
+
+        </form>
+    </div>
+    <div className="mx-auto md:my-16 shadow-lg rounded-md p-8 md:w-7/12">
+        <div className="flex gap-3">
+            <i className="ri-link-unlink-m text-4xl"></i>
+            <h1 className="text-3xl font-semibold">Delivery Address </h1>
+        </div>
+        <hr className="my-6" />
+       
+        <form className="grid grid-cols-2 gap-6" onSubmit ={saveAddress}>
+        <div className="grid grid-col gap-2 col-span-2">
+            <label className="text-lg font-semibold">Area/Street/Village</label>
+            <input 
+            name="address"
+            type="text"
+            className="p-2 rounded border border-gray-300"
+            value={formvalue.address}
+            required
+            onChange={handleAddressForm}
+            />
+            </div>
+
+            <div className="grid grid-col gap-2">
+            <label className="text-lg font-semibold">City</label>
+            <input 
+            name="city"
+            type="text"
+            className="p-2 rounded border border-gray-300"
+            value={formvalue.city}
+            required
+            onChange={handleAddressForm}
+            />
+            </div>
+            <div className="grid grid-col gap-2">
+            <label className="text-lg font-semibold">State</label>
+            <input 
+            name="state"
+            type="text"
+            className="p-2 rounded border border-gray-300"
+            value={formvalue.state}
+            required
+            onChange={handleAddressForm}
+            />
+            </div>
+            <div className="grid grid-col gap-2">
+            <label className="text-lg font-semibold">Country</label>
+            <input 
+            name="country"
+            type="text"
+            className="p-2 rounded border border-gray-300"
+            value={formvalue.country}
+            required
+            onChange={handleAddressForm}
+            />
+            </div>
+            <div className="grid grid-col gap-2">
+            <label className="text-lg font-semibold">Pincode</label>
+            <input 
+            name="pincode"
+            type="number"
+            className="p-2 rounded border border-gray-300"
+            value={formvalue.pincode}
+            required
+            onChange={handleAddressForm}
+            />
+            </div>
+          
 
 
          

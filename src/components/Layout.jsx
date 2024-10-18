@@ -97,7 +97,7 @@ return(
             {
                 session && 
                 <button className="relative" onClick={()=>setAccountmenu(!accountmenu)}>
-                    <img src="/images/avt.webp" className="w-10 h-10 rounded-full" alt="" />
+                    <img src={session.photoURL?session.photoURL:"/images/avt.webp"} className="w-10 h-10 rounded-full" alt="" />
                     {
                     accountmenu &&
                     <div className="flex flex-col gap-2 items-start w-[150px] py-3 bg-white absolute top-12 right-0 shadow-lg shadow-gray-300">
@@ -224,7 +224,7 @@ return(
         }    
 
         {
-            session && <p className="text-white">Hi User</p>
+            session && <p className="text-white">Hi {session.displayName}</p>
         }
         {
             !session && 
